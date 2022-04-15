@@ -4,8 +4,10 @@ import Layout from "./components/Layout";
 
 const App: React.FC = () => {
   return (
-    <Layout>
+    <div>
       <CssBaseline />
+      <Layout />
+
       <Box
         height="100vh"
         display="flex"
@@ -22,7 +24,7 @@ const App: React.FC = () => {
           </Typography>
         </Paper>
       </Box>
-    </Layout>
+    </div>
   );
 };
 
