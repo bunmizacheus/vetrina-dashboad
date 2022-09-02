@@ -1,30 +1,29 @@
 import React from "react";
-import { Box, CssBaseline, Paper, Typography } from "@mui/material";
-import Layout from "./components/Layout";
+import CssBaseline from "@mui/material/CssBaseline";
+// import { ThemeProvider } from "@mui/private-theming";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ContextObjProvider from "./store/app-context";
+import { DrawerHeader } from "./utils/helperFunction";
+import { appRoutes } from "./Routes/appRoutes";
 
 const App: React.FC = () => {
   return (
-    <div>
-      <CssBaseline />
-      <Layout />
-
-      <Box
-        height="100vh"
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        flexDirection="column"
-      >
-        <Paper
-          elevation={3}
-          sx={{ padding: "1rem", backgroundColor: "secondary.light" }}
-        >
-          <Typography color="primary.dark" variant="h1">
-            Starter App
-          </Typography>
-        </Paper>
-      </Box>
-    </div>
+    <ContextObjProvider>
+      <DrawerHeader />
+      <CssBaseline>
+        <BrowserRouter>
+          <Routes>
+            {appRoutes.map((route, i) => (
+              <Route
+                path={`${route.path}`}
+                element={<route.element />}
+                key={i}
+              />
+            ))}
+          </Routes>
+        </BrowserRouter>
+      </CssBaseline>
+    </ContextObjProvider>
   );
 };
 
